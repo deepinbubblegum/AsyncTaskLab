@@ -2,21 +2,23 @@ package com.deepin.asynctasklab;
 
 import android.os.AsyncTask;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.lang.ref.WeakReference;
 
 public class SimpleTask extends AsyncTask <Void, Integer, Void> {
     private WeakReference<ProgressBar> mProgressBar;
-
-    SimpleTask(ProgressBar pb){
+    private WeakReference<TextView> mTextView;
+    SimpleTask(ProgressBar pb, TextView tv){
         mProgressBar = new WeakReference<>(pb);
+        mTextView = new WeakReference<>(tv);
     }
 
     @Override
     protected Void doInBackground(Void... voids) {
-        for (int i = 0; i < 100 ; i++){
+        for (int i = 0; i <= 100 ; i++){
             try {
-                Thread.sleep(500);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -28,5 +30,6 @@ public class SimpleTask extends AsyncTask <Void, Integer, Void> {
     @Override
     protected void onProgressUpdate(Integer... values) {
         mProgressBar.get().setProgress(values[0]);
+        mTextView.get().setText(values[0]+" %");
     }
 }
