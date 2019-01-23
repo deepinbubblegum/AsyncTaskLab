@@ -5,7 +5,7 @@ import android.widget.ProgressBar;
 
 import java.lang.ref.WeakReference;
 
-public class SimpleTask extends AsyncTask <Void, Void, Void> {
+public class SimpleTask extends AsyncTask <Void, Integer, Void> {
     private WeakReference<ProgressBar> mProgressBar;
 
     SimpleTask(ProgressBar pb){
@@ -26,7 +26,7 @@ public class SimpleTask extends AsyncTask <Void, Void, Void> {
     }
 
     @Override
-    protected void onProgressUpdate(Void... values) {
-        super.onProgressUpdate(values);
+    protected void onProgressUpdate(Integer... values) {
+        mProgressBar.get().setProgress(values[0]);
     }
 }
