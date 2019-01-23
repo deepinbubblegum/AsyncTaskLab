@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import java.lang.ref.WeakReference;
 
-public class SimpleTask extends AsyncTask <Void, Integer, Void> {
+public class SimpleTask extends AsyncTask <Integer, Integer, Void> {
     private WeakReference<ProgressBar> mProgressBar,mProgressBar2;
     private WeakReference<TextView> mTextView,mTextView2;
     SimpleTask(ProgressBar pb,ProgressBar pb2, TextView tv,TextView tv2){
@@ -14,11 +14,12 @@ public class SimpleTask extends AsyncTask <Void, Integer, Void> {
         mProgressBar2 = new WeakReference<>(pb2);
         mTextView = new WeakReference<>(tv);
         mTextView2 = new WeakReference<>(tv2);
+
     }
 
     @Override
-    protected Void doInBackground(Void... voids) {
-        for (int i = 0; i <= 100 ; i++){
+    protected Void doInBackground(Integer... Integers) {
+        for (int i = 0; i <= Integers[0]; i++){
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
